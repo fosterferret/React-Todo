@@ -5,23 +5,27 @@ import "./Todo.css";
 
 class App extends React.Component {
   state = {
-    todos: JSON.parse(localStorage.getItem("todos"))
+    todos: JSON.parse(localStorage.getItem("todos")) || []
   };
 
-  // saveToLocalStorage = (keyName, value) => {
-  // 	localStorage.setItem(keyName, value);
-
   toggleComplete = id => {
+    const storedTodos = JSON.parse(localStorage.getItem("todos"));
+    localStorage.setItem(
+      "todos",
+      JSON.stringify(
+        storedTodos.map(todo => {
+          if (todo.id === id) todo.isCompleted = !todo.isCompleted;
+          return todo;
+        })
+      )
+    );
     this.setState({
-      todos: this.state.todos.map(todo => {
-        if (todo.id === id) todo.isCompleted = !todo.isCompleted;
-        return todo;
-      })
+      todos: JSON.parse(localStorage.getItem("todos"))
     });
   };
 
   addTask = task => {
-    if (!localStorage.getItem("todos").length) {
+    if (localStorage.getItem("todos").length < 1) {
       const todos = [task];
       localStorage.setItem("todos", JSON.stringify(todos));
     } else {
