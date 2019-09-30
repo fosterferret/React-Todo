@@ -1,6 +1,7 @@
 import React from "react";
 import { TodoForm } from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
+import './Todo.css'
 
 class App extends React.Component {
   state = {
@@ -10,10 +11,8 @@ class App extends React.Component {
   toggleComplete = id => {
     this.setState({
       todos: this.state.todos.map(todo => {
-        if (todo.id === id) {
-          todo.isCompleted = !todo.isCompleted;
+        if (todo.id === id) todo.isCompleted = !todo.isCompleted;
         return todo;
-        }
       })
     });
   };
