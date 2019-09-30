@@ -54,14 +54,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
-        <TodoForm addTask={this.addTask} />
-        <TodoList
-          todos={this.state.todos}
-          deleteTask={this.deleteTask}
-          toggleComplete={this.toggleComplete}
-        />
+      <div className="container">
+        <div className="todo-app">
+          <div className="left">
+            <h1 className="header">Get Stuff Done!</h1>
+          </div>
+          <div className="right">
+            <TodoForm addTask={this.addTask} className="form"/>
+            <TodoList
+              todos={this.state.todos}
+              deleteTask={this.deleteTask}
+              toggleComplete={this.toggleComplete}
+            />
+          </div>
+        </div>
       </div>
     );
   }
