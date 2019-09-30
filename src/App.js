@@ -5,8 +5,12 @@ import './Todo.css'
 
 class App extends React.Component {
   state = {
-    todos: []
+    todos: JSON.parse(localStorage.getItem('todos'))
   };
+
+  // saveToLocalStorage = (keyName, value) => {
+	// 	localStorage.setItem(keyName, value);
+
 
   toggleComplete = id => {
     this.setState({
@@ -17,9 +21,21 @@ class App extends React.Component {
     });
   };
 
-  addTask = item => {
+  addTask = task => {
+    // this.setState({
+    //   todos: [...this.state.todos, task]
+    // });
+    if(!localStorage.getItem('todos').length) {
+      const todos = [task];
+      localStorage.setItem('todos', JSON.stringify(todos))
+    }
+    else {
+      const storedTodos = JSON.parse(localStorage.getItem('todos'))
+      const todos = [...storedTodos, task]
+      localStorage.setItem('todos', JSON.stringify(todos))
+    }
     this.setState({
-      todos: [...this.state.todos, item]
+      todos: JSON.parse(localStorage.getItem('todos'))
     });
   };
 
