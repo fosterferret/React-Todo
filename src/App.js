@@ -1,16 +1,15 @@
 import React from "react";
 import { TodoForm } from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
-import './Todo.css'
+import "./Todo.css";
 
 class App extends React.Component {
   state = {
-    todos: JSON.parse(localStorage.getItem('todos'))
+    todos: JSON.parse(localStorage.getItem("todos"))
   };
 
   // saveToLocalStorage = (keyName, value) => {
-	// 	localStorage.setItem(keyName, value);
-
+  // 	localStorage.setItem(keyName, value);
 
   toggleComplete = id => {
     this.setState({
@@ -22,43 +21,43 @@ class App extends React.Component {
   };
 
   addTask = task => {
-    // this.setState({
-    //   todos: [...this.state.todos, task]
-    // });
-    if(!localStorage.getItem('todos').length) {
+    if (!localStorage.getItem("todos").length) {
       const todos = [task];
-      localStorage.setItem('todos', JSON.stringify(todos))
-    }
-    else {
-      const storedTodos = JSON.parse(localStorage.getItem('todos'))
-      const todos = [...storedTodos, task]
-      localStorage.setItem('todos', JSON.stringify(todos))
+      localStorage.setItem("todos", JSON.stringify(todos));
+    } else {
+      const storedTodos = JSON.parse(localStorage.getItem("todos"));
+      const todos = [...storedTodos, task];
+      localStorage.setItem("todos", JSON.stringify(todos));
     }
     this.setState({
-      todos: JSON.parse(localStorage.getItem('todos'))
+      todos: JSON.parse(localStorage.getItem("todos"))
     });
   };
 
-
   deleteTask = id => {
-    if(window.confirm('Are you sure?')){
-    let list = this.state.todos;
-    list.map(todo => {
+    const storedTodos = JSON.parse(localStorage.getItem("todos"));
+    storedTodos.map(todo => {
       if (todo.id === id) {
-        list.splice(list.indexOf(todo), 1)
+        storedTodos.splice(storedTodos.indexOf(todo), 1);
+        const todos = storedTodos;
+        localStorage.setItem("todos", JSON.stringify(todos));
       }
-    })
+    });
     this.setState({
-      todos: list
-    })
-  }}
+      todos: JSON.parse(localStorage.getItem("todos"))
+    });
+  };
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addTask={this.addTask}/>
-        <TodoList todos={this.state.todos} deleteTask={this.deleteTask} toggleComplete={this.toggleComplete}/>
+        <TodoForm addTask={this.addTask} />
+        <TodoList
+          todos={this.state.todos}
+          deleteTask={this.deleteTask}
+          toggleComplete={this.toggleComplete}
+        />
       </div>
     );
   }
