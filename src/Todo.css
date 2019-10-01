@@ -64,7 +64,7 @@ input[type=checkbox] {
 
 h1.header {
     text-align: center;
-    margin-top: 50%;
+    margin-top: 20%;
     color: #ecf0f1;
 }
 
@@ -91,6 +91,8 @@ h1.header {
 .right>form input[type=text] {
     width: 45%;
     height: 30px;
+    margin-top: 10%;
+    border-radius: 15px;
 }
 
 .add-button {
@@ -100,4 +102,13 @@ h1.header {
     width: 25%;
     border-radius: 10%;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+}
+
+.search-field {
+    width: 40%;
+    height: 30px;
+    align-self: center;
+    margin-top: 15%;
+    border-radius: 15px;
+    border: 0px;
 }
