@@ -1,8 +1,8 @@
 import React from "react";
 import { TodoForm } from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
-import "./Todo.css";
 import Search from './components/TodoComponents/Search'
+import "./Todo.css";
 
 class App extends React.Component {
   state = {
