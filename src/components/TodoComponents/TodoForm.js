@@ -15,7 +15,7 @@ export class TodoForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} className="add-form">
                 <input 
                     name="title"
                     type="text" 
